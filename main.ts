@@ -526,7 +526,7 @@ function v4aEdits(lines: string[], strict: boolean): Edit[] {
       const chunks: VChunk[] = [];
       let cur: VChunk | null = null;
       for (const { text: l, no } of raw) {
-        if (l.trim() === '*** End of File') {
+        if (l.startsWith('***') && l.trim() === '*** End of File') {
           if (cur === null) {
             cur = { anchor: null, eof: true, body: [] };
             chunks.push(cur);
